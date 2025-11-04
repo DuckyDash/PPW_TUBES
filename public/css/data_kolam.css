@@ -1,119 +1,25 @@
-body {
-    background-color: #f8f9fa;
-}
-
-.sidebar {
-    height: 100vh;
-    background-color: #1e5799;
-    color: white;
-    padding: 20px;
-}
-
-.sidebar .nav-link {
-    color: white;
-    margin: 8px 0;
-    border-radius: 8px;
-}
-
-.sidebar .nav-link.active,
-.sidebar .nav-link:hover {
-    background-color: #155fa0;
-}
-
-.header {
-    background-color: #e9ecef;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.content {
-    padding: 25px;
-}
-
 .btn-success {
-    background-color: #1e5799;
-    border: none;
+  background-color: #1e5799;
+  border: none;
 }
 
 .btn-success:hover {
-    background-color: #155fa0;
-}
-
-.card {
-    border: none;
-    border-radius: 10px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    background-color: #fff;
-}
-
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #155fa0;
 }
 
 .card h6 {
-    color: #1e5799;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  color: #1e5799;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .card .bi-gear {
-    color: #777;
-    cursor: pointer;
-    transition: color 0.2s;
+  color: #777;
+  cursor: pointer;
+  transition: color 0.2s;
 }
 
 .card .bi-gear:hover {
-    color: #1e5799;
-}
-
-.dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #28a745;
-    margin-left: 5px;
-}
-
-footer {
-    padding: 15px 0;
-    color: #6c757d;
-}
-
-.modal-content {
-    border-radius: 12px;
-}
-
-.modal-header {
-    background-color: #f1f5f9;
-    border-bottom: none;
-}
-
-.modal-title {
-    color: #1e5799;
-}
-
-.form-label {
-    font-weight: 500;
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        height: auto;
-        text-align: center;
-    }
-
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .content {
-        padding: 15px;
-    }
+  color: #1e5799;
 }
