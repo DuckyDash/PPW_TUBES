@@ -17,4 +17,53 @@
 
 .equal-height .card {
   flex: 1;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== Jenis Ikan & Sensor ========== */
+.chart-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chart-container {
+  width: 160px;
+  height: 160px;
+}
+
+.fish-list li,
+.sensor-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.dot-blue { background-color: #7366ff; }
+.dot-green { background-color: #54c78c; }
+.dot-teal { background-color: #00bcd4; }
+.dot-purple { background-color: #7b61ff; }
+
+.status-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 160px;
+}
+
+.status-check i {
+  font-size: 80px;
+  color: #54c78c;
 }

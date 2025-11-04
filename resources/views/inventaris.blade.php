@@ -49,10 +49,11 @@ Inventaris POKDAKAN Mina Jaya
             <td>Pancingan Si Mbah</td>
             <td>Sgt. Baik</td>
             <td>Sobari</td>
-            <td>Pcs</td>
+            <td>1</td>
             <td>Gagang Patah</td>
             <td class="text-center">
-              <i class="bi bi-eye me-2"></i>
+              <i class="bi bi-eye me-2 text-primary" style="cursor:pointer;"
+                onclick="window.location.href='{{ url('inventaris/detail') }}'"></i>
               <i class="bi bi-download"></i>
             </td>
           </tr>
@@ -80,51 +81,89 @@ Inventaris POKDAKAN Mina Jaya
               <i class="bi bi-download"></i>
             </td>
           </tr>
-                    <tr>
-            <td>T9290</td>
-            <td>Pompa Air</td>
-            <td>Baru</td>
-            <td>Gudang</td>
-            <td>2</td>
-            <td>-</td>
-            <td class="text-center">
-              <i class="bi bi-eye me-2"></i>
-              <i class="bi bi-download"></i>
-            </td>
-          </tr>
-                    <tr>
-            <td>T9290</td>
-            <td>Pompa Air</td>
-            <td>Baru</td>
-            <td>Gudang</td>
-            <td>2</td>
-            <td>-</td>
-            <td class="text-center">
-              <i class="bi bi-eye me-2"></i>
-              <i class="bi bi-download"></i>
-            </td>
-          </tr>
-                    <tr>
-            <td>T9290</td>
-            <td>Pompa Air</td>
-            <td>Baru</td>
-            <td>Gudang</td>
-            <td>2</td>
-            <td>-</td>
-            <td class="text-center">
-              <i class="bi bi-eye me-2"></i>
-              <i class="bi bi-download"></i>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
+{{-- Floating Button untuk tambah data --}}
 <div class="floating-btn">
-  <button class="btn btn-success shadow-lg">
+  <button class="btn btn-success shadow-lg" data-bs-toggle="modal" data-bs-target="#modalInventaris">
     <i class="bi bi-plus-lg"></i>
   </button>
+</div>
+
+{{-- Modal Tambah Inventaris --}}
+<div class="modal fade" id="modalInventaris" tabindex="-1" aria-labelledby="modalInventarisLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-light border-0">
+        <h5 class="modal-title fw-semibold text-primary" id="modalInventarisLabel">Tambah Barang Inventaris</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body px-4 pb-4">
+        <form>
+          <div class="row g-4">
+            <!-- Kiri -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Nomor Barang</label>
+                <input type="text" class="form-control rounded-3 shadow-sm" placeholder="Contoh: T9288">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Nama Barang</label>
+                <input type="text" class="form-control rounded-3 shadow-sm" placeholder="Masukkan nama barang">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Kondisi Barang</label>
+                <select class="form-select rounded-3 shadow-sm">
+                  <option selected disabled>Pilih kondisi...</option>
+                  <option>Baru</option>
+                  <option>Baik</option>
+                  <option>Rusak Ringan</option>
+                  <option>Rusak Berat</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Jumlah</label>
+                <input type="number" class="form-control rounded-3 shadow-sm" placeholder="Masukkan jumlah barang">
+              </div>
+            </div>
+
+            <!-- Kanan -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Pemilik / Lokasi</label>
+                <input type="text" class="form-control rounded-3 shadow-sm" placeholder="Misal: Gudang / Sobari">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Keterangan</label>
+                <textarea class="form-control rounded-3 shadow-sm" rows="4" placeholder="Opsional..."></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Upload Foto Barang</label><br>
+                <button type="button" class="btn btn-outline-secondary btn-sm rounded-3 px-3">
+                  <i class="bi bi-upload me-1"></i> Upload a Photo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success rounded-4 px-5 py-2">
+              <i class="bi bi-check-circle me-1"></i> Selesai
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection

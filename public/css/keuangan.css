@@ -1,10 +1,67 @@
-.stat-card {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
+.floating-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 999;
 }
 
-.table th,
-.table td {
-  vertical-align: middle;
+.floating-btn .btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: white;
+  border: none;
+}
+
+.floating-btn .btn-primary {
+  background-color: #007bff;
+}
+
+.floating-btn .btn-success {
+  background-color: #28a745;
+}
+
+.floating-btn .btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-content {
+  border-radius: 15px;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #333;
+}
+
+.form-control,
+.form-select {
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+.btn-outline-secondary {
+  border: 1px solid #999;
 }

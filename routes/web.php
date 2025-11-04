@@ -25,3 +25,13 @@ Route::get('/data_kolam', function () {
 Route::get('/inventaris', function () {
     return view('inventaris');
 });
+
+Route::get('/keuangan/list', function () {
+    return view('keuangan.list');
+})->name('keuangan.list');
+
+Route::view('/keuangan/detail', 'keuangan.detail')->name('keuangan.detail');
+
+Route::get('/inventaris/detail', function () {
+    return view('inventaris.detail');
+})->name('inventaris.detail');

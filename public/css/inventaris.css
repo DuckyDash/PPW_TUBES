@@ -17,3 +17,30 @@
   border-radius: 50%;
   font-size: 25px;
 }
+
+.proof-img {
+  max-width: 220px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+.modal-content {
+  border-radius: 16px;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-body .form-label {
+  font-weight: 600;
+  color: #444;
+}
+
+.modal-body .form-control,
+.modal-body .form-select {
+  border-radius: 10px;
+}
+

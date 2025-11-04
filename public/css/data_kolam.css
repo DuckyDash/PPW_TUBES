@@ -23,3 +23,60 @@
 .card .bi-gear:hover {
   color: #1e5799;
 }
+
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 6px;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item i {
+  color: #6c757d;
+}
+
+.dropdown-item:hover i {
+  color: #0d6efd;
+}
+
+.kolam-card {
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  transition: 0.2s ease;
+  min-height: 230px;
+}
+
+.kolam-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.status-aktif {
+  background-color: #28a745;
+}
+.status-perawatan {
+  background-color: #ffc107;
+}
+.status-nonaktif {
+  background-color: #dc3545;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}

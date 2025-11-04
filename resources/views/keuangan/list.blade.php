@@ -1,65 +1,29 @@
 @extends('layouts.app')
 
-@section('title', 'Keuangan - Tambak Ikan Mina Jaya')
+@section('title', 'List Keuangan - Tambak Ikan Mina Jaya')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/keuangan.css') }}">
 @endpush
 
 @section('header')
-Selamat Datang di <strong>Keuangan Tambak Ikan Mina Jaya</strong>
+Daftar Transaksi Keuangan Tambak Ikan Mina Jaya
 @endsection
 
 @section('content')
 <div class="container-fluid px-4">
 
-  {{-- Statistik Keuangan --}}
-  <div class="row mb-4">
-    <div class="col-md-6 mb-3">
-      <div class="card shadow-sm border-0 stat-card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <h6 class="fw-semibold mb-1">Dana Tambak</h6>
-              <h3 class="fw-bold text-dark mb-1">Rp. 12.000.000</h3>
-              <small class="text-muted">Transaksi terakhir pada 12/09/2025</small>
-            </div>
-            <div class="text-end">
-              <i class="bi bi-graph-up-arrow fs-2 text-success"></i>
-            </div>
-          </div>
-          <button class="btn btn-outline-dark btn-sm mt-3">Selengkapnya <i class="bi bi-chevron-right"></i></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6 mb-3">
-      <div class="card shadow-sm border-0 stat-card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <h6 class="fw-semibold mb-1">Transaksi Terakhir</h6>
-              <h3 class="fw-bold text-danger mb-1">– Rp. 920.000</h3>
-              <small class="text-muted">Transaksi terakhir pada 12/09/2025</small>
-            </div>
-            <div class="text-end">
-              <i class="bi bi-graph-down-arrow fs-2 text-danger"></i>
-            </div>
-          </div>
-          <button class="btn btn-outline-dark btn-sm mt-3">Selengkapnya <i class="bi bi-chevron-right"></i></button>
-        </div>
-      </div>
-    </div>
+  {{-- Judul Halaman --}}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h5 class="fw-bold text-primary mb-0">Transaksi Keuangan Tambak</h5>
+    <button class="btn btn-success rounded-circle" data-bs-toggle="modal" data-bs-target="#modalTransaksi">
+      <i class="bi bi-plus-lg"></i>
+    </button>
   </div>
 
   {{-- Tabel Transaksi --}}
   <div class="card border-0 shadow-sm">
     <div class="card-body">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="fw-bold text-primary mb-0">Transaksi Keuangan Tambak</h5>
-        <a href="{{ route('keuangan.list') }}" class="btn btn-primary btn-sm">List data selengkapnya</a>
-      </div>
-
       <div class="table-responsive">
         <table class="table align-middle table-hover mb-0">
           <thead class="table-light">
@@ -74,7 +38,7 @@ Selamat Datang di <strong>Keuangan Tambak Ikan Mina Jaya</strong>
             </tr>
           </thead>
           <tbody>
-            @for ($i = 0; $i < 6; $i++)
+            @for ($i = 0; $i < 10; $i++)
             <tr>
               <td>9288</td>
               <td>Pembelian Pakan Ikan</td>
@@ -96,7 +60,7 @@ Selamat Datang di <strong>Keuangan Tambak Ikan Mina Jaya</strong>
     </div>
   </div>
 
-    {{-- Modal Tambah Transaksi --}}
+  {{-- Modal Tambah Transaksi --}}
   <div class="modal fade" id="modalTransaksi" tabindex="-1" aria-labelledby="modalTransaksiLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content border-0 shadow">
@@ -162,17 +126,6 @@ Selamat Datang di <strong>Keuangan Tambak Ikan Mina Jaya</strong>
         </div>
       </div>
     </div>
-  </div>
-
-
-  {{-- Floating Button --}}
-  <div class="floating-btn">
-    <button class="btn btn-primary shadow-lg me-2">
-      <i class="bi bi-file-earmark-arrow-up"></i>
-    </button>
-  <button class="btn btn-success rounded-circle" data-bs-toggle="modal" data-bs-target="#modalTransaksi">
-    <i class="bi bi-plus-lg"></i>
-  </button>
   </div>
 
 </div>
