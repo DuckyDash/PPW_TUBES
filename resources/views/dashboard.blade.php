@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endpush
 
+@section('header')
+<strong>Dashboard Tambak Ikan Mina Jaya</strong>
+@endsection
+
 @section('content')
   <h3 class="text-center fw-bold text-primary mb-4">STATISTIK KOLAM</h3>
 
@@ -26,7 +30,7 @@
     <div class="col-md-4">
       <div class="stat-box stat-red">
         <p>Kadar Oksigen Air</p>
-        <h2>AAAA</h2>
+        <h2>12</h2>
       </div>
     </div>
   </div>

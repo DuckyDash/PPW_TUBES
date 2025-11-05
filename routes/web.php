@@ -35,3 +35,7 @@ Route::view('/keuangan/detail', 'keuangan.detail')->name('keuangan.detail');
 Route::get('/inventaris/detail', function () {
     return view('inventaris.detail');
 })->name('inventaris.detail');
+
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');

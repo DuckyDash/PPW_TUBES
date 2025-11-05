@@ -8,6 +8,7 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   {{-- CSS global --}}
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -35,9 +36,28 @@
     {{-- Header --}}
     <div class="header d-flex justify-content-between align-items-center p-3 border-bottom">
       <div>@yield('header', 'Selamat Datang')</div>
-      <div>
-        <i class="bi bi-bell me-3"></i>
-        <i class="bi bi-person-circle"></i>
+      <div class="d-flex align-items-center position-relative">
+          <!-- Bell Icon sebagai trigger -->
+          <i id="notificationBell" class="bi bi-bell fs-5 me-3" style="cursor: pointer;"></i>
+
+          <!-- Toast container -->
+          <div id="notificationToastContainer" class="position-absolute top-100 end-0 mt-2" style="z-index: 1050; display: none;">
+              <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="toast-header">
+                      <strong class="me-auto">Notifikasi</strong>
+                      <small>Baru</small>
+                      <button type="button" class="btn-close" onclick="this.closest('.toast').style.display='none';" aria-label="Close"></button>
+                  </div>
+                  <div class="toast-body">
+                      Anda memiliki 3 notifikasi baru.
+                  </div>
+              </div>
+          </div>
+
+          <!-- Profile Icon -->
+          <a href="{{ route('profile') }}" class="d-flex align-items-center">
+              <i class="bi bi-person-circle fs-5 me-3"></i>
+          </a>
       </div>
     </div>
 
@@ -53,3 +73,14 @@
 @stack('scripts')
 </body>
 </html>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const bell = document.getElementById('notificationBell');
+    const toastContainer = document.getElementById('notificationToastContainer');
+
+    bell.addEventListener('click', () => {
+        toastContainer.style.display = toastContainer.style.display === 'none' ? 'block' : 'none';
+    });
+});
+</script>

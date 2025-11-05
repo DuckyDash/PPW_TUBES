@@ -67,3 +67,123 @@
   font-size: 80px;
   color: #54c78c;
 }
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: #7366ff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    color: white;
+}
+
+.profile-header img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.5);
+}
+
+.profile-details h3 {
+    margin-bottom: 0.2rem;
+}
+
+.profile-details p {
+    margin-bottom: 0;
+    opacity: 0.85;
+}
+
+/* Statistik Card */
+.stat-card {
+    border-radius: 1rem;
+    padding: 1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-blue { background-color: #7366ff; }
+.stat-green { background-color: #28c76f; }
+.stat-orange { background-color: #ff9f43; }
+
+.stat-card .icon-circle {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: #7366ff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    color: white;
+}
+
+.profile-header img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.5);
+}
+
+.profile-details h3 {
+    margin-bottom: 0.2rem;
+}
+
+.profile-details p {
+    margin-bottom: 0;
+    opacity: 0.85;
+}
+
+/* Statistik Card Minimal */
+.stat-card {
+    border-radius: 1rem;
+    padding: 1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    background-color: #7366ff; /* satu warna default */
+}
+
+.stat-card .icon-circle {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Info Card */
+.info-card {
+    background-color: #f8f9fa;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.info-card p {
+    margin-bottom: 0.5rem;
+}

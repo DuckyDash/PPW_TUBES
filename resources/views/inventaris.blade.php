@@ -7,7 +7,7 @@
 @endpush
 
 @section('header')
-Inventaris POKDAKAN Mina Jaya
+<strong>Inventaris Tambak Ikan Mina Jaya</strong>
 @endsection
 
 @section('content')

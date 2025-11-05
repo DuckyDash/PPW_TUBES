@@ -7,7 +7,7 @@
 @endpush
 
 @section('header')
-Selamat Datang di <strong>Keuangan Tambak Ikan Mina Jaya</strong>
+<strong>Keuangan Tambak Ikan Mina Jaya</strong>
 @endsection
 
 @section('content')
