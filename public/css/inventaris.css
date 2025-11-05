@@ -1,121 +1,46 @@
-html,
-body {
-    background-color: #f8f9fa;
-}
-
-.sidebar {
-    height: 100vh;
-    background-color: #1e5799;
-    color: white;
-    padding: 20px;
-}
-
-.sidebar .nav-link {
-    color: white;
-    margin: 8px 0;
-    border-radius: 8px;
-}
-
-.sidebar .nav-link.active,
-.sidebar .nav-link:hover {
-    background-color: #155fa0;
-}
-
-.header {
-    background-color: #e9ecef;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.content {
-    padding: 25px;
-}
-
-.stat-box {
-    border-radius: 10px;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-weight: bold;
-}
-
-.stat-blue {
-    background-color: #5bc0de;
-}
-.stat-orange {
-    background-color: #f0ad4e;
-}
-.stat-red {
-    background-color: #d9534f;
-}
-
-.fish-list li {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 5px;
-    font-size: 15px;
-}
-
-.dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-}
-
-.dot-blue {
-    background-color: #007bff;
-}
-.dot-green {
-    background-color: #28a745;
-}
-.dot-teal {
-    background-color: #20c997;
-}
-.dot-purple {
-    background-color: #6f42c1;
-}
-
-.equal-height {
-    display: flex;
-    align-items: stretch;
-}
-
-.equal-height .card {
-    flex: 1;
-}
-
-.fish-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.fish-section canvas {
-    max-width: 180px;
-    max-height: 180px;
-}
-
 .table th,
 .table td {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .floating-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    display: flex;
-    gap: 10px;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: flex;
+  gap: 10px;
 }
 
 .floating-btn .btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    font-size: 25px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 25px;
 }
+
+.proof-img {
+  max-width: 220px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+.modal-content {
+  border-radius: 16px;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-body .form-label {
+  font-weight: 600;
+  color: #444;
+}
+
+.modal-body .form-control,
+.modal-body .form-select {
+  border-radius: 10px;
+}
+

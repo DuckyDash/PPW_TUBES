@@ -45,7 +45,7 @@
     }
     .logo h5 {
       font-weight: 700;
-      color: #0d6efd;
+      color: #155e95;
       margin: 0;
       line-height: 1.2;
     }
@@ -57,12 +57,14 @@
       font-weight: 700;
     }
     .login-btn {
-      background-color: #0d6efd;
+      background-color: #155e95;
       color: #fff;
       border: none;
     }
     .login-btn:hover {
-      background-color: #0b5ed7;
+      background-color: #155e95;
+      color: #fff
+      
     }
     .forgot-password {
       font-size: 0.9rem;
@@ -99,14 +101,14 @@
         <h5>Tambak Ikan Mina<br>Jaya</h5>
       </div>
 
-      <div class="text-center mb-4">
+      <div class="text-center mb-1">
         <h3>Welcome Back 👋</h3>
         <p class="text-muted mb-4">Welcome, Please Enter Your Details.</p>
       </div>
 
       <form action="{{ route('login.process') }}" method="POST">
         @csrf
-        <div class="mb-3">
+        <div class="mb-2">
           <label class="form-label">Username</label>
           <input type="text" name="username" class="form-control" placeholder="Enter Username" required>
         </div>
@@ -116,7 +118,7 @@
           <input type="password" name="password" class="form-control" placeholder="Password" required>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-5">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="remember" name="remember">
             <label class="form-check-label" for="remember">Remember me</label>
@@ -128,7 +130,7 @@
       </form>
 
       <div class="create-account">
-        <p class="mb-0">Don’t have account yet? <a href="#">Create Account</a></p>
+        <p class="mb-10">Don’t have account yet? <a href="#">Create Account</a></p>
       </div>
     </div>
 
