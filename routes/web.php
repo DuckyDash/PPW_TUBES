@@ -25,3 +25,7 @@ Route::get('/data_kolam', function () {
 Route::get('/inventaris', function () {
     return view('inventaris');
 });
+
+Route::get('/hasil_panen', function () {
+    return view('hasil_panen');
+});
