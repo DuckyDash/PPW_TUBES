@@ -45,7 +45,7 @@
 @endpush
 
 @section('header')
-<strong>Keuangan Tambak Ikan Mina Jaya</strong>
+<strong>Data Kolam Tambak Ikan Mina Jaya</strong>
 @endsection
 
 @section('content')
