@@ -3,4 +3,4 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\KolamController;
 
-Route::apiResource('kolams', KolamController::class);
+Route::apiResource('kolams', KolamController::class);   
