@@ -1,56 +1,122 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminUserController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KolamController;
+use App\Http\Controllers\KeuanganController;
+use App\Http\Controllers\InventarisController;
 
+/*
+|--------------------------------------------------------------------------
+| AUTH (GUEST)
+|--------------------------------------------------------------------------
+*/
 Route::middleware('guest')->group(function () {
-    Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.process');
-    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-    Route::post('/register', [AuthController::class, 'register'])->name('register.process');
+    Route::get('/', [AuthController::class, 'showLoginForm'])
+        ->name('login');
+
+    Route::post('/login', [AuthController::class, 'login'])
+        ->name('login.process');
+
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])
+        ->name('register');
+
+    Route::post('/register', [AuthController::class, 'register'])
+        ->name('register.process');
 });
 
+/*
+|--------------------------------------------------------------------------
+| AUTHENTICATED USERS
+|--------------------------------------------------------------------------
+*/
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::resource('data_kolam', KolamController::class)->except(['show', 'create', 'edit']);
-    Route::get('/profile', function () {
-        return view('profile');
-    })->name('profile');
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
+
+    Route::get('/dashboard', fn () => view('dashboard'))
+        ->name('dashboard');
+
+    /*
+    |--------------------------------------------------------------------------
+    | DATA KOLAM
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('data_kolam', KolamController::class)
+        ->except(['show', 'create', 'edit']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | KEUANGAN
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/keuangan', [KeuanganController::class, 'index'])
+        ->name('keuangan.index');
+
+    Route::post('/keuangan', [KeuanganController::class, 'store'])
+        ->name('keuangan.store');
+
+    Route::get('/keuangan/{id}', [KeuanganController::class, 'show'])
+        ->name('keuangan.detail');
+
+    Route::get('/keuangan/list', fn () => view('keuangan.list'))
+        ->name('keuangan.list');
+
+    /*
+    |--------------------------------------------------------------------------
+    | INVENTARIS 
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/inventaris', [InventarisController::class, 'index'])
+        ->name('inventaris.index');
+
+    Route::post('/inventaris', [InventarisController::class, 'store'])
+        ->name('inventaris.store');
+
+    Route::get('/inventaris/{id}', [InventarisController::class, 'show'])
+        ->name('inventaris.detail');
+    Route::put('/inventaris/{id}', [InventarisController::class, 'update'])
+        ->name('inventaris.update');
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | PROFILE
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/profile', fn () => view('profile'))
+        ->name('profile');
+
+    /*
+    |--------------------------------------------------------------------------
+    | ADMIN ONLY
+    |--------------------------------------------------------------------------
+    */
     Route::middleware('role:admin')->group(function () {
 
-        Route::get('/keuangan', function () {
-            return view('keuangan');
-        });
-        Route::get('/keuangan/list', function () {
-            return view('keuangan.list');
-        })->name('keuangan.list');
-        Route::view('/keuangan/detail', 'keuangan.detail')->name('keuangan.detail');
+        Route::get('/users', [AdminUserController::class, 'index'])
+            ->name('admin.users');
 
-        Route::get('/inventaris', function () {
-            return view('inventaris');
-        });
-        Route::get('/inventaris/detail', function () {
-            return view('inventaris.detail');
-        })->name('inventaris.detail');
+        Route::post('/users/{id}/make-admin', [AdminUserController::class, 'makeAdmin'])
+            ->name('admin.makeAdmin');
 
-
-        Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users');
-        Route::post('/users/{id}/make-admin', [AdminUserController::class, 'makeAdmin'])->name('admin.makeAdmin');
-        Route::post('/users/{id}/make-user', [AdminUserController::class, 'makeUser'])->name('admin.makeUser');
+        Route::post('/users/{id}/make-user', [AdminUserController::class, 'makeUser'])
+            ->name('admin.makeUser');
     });
 
-    Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    /*
+    |--------------------------------------------------------------------------
+    | ADMIN KOLAM
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('admin')->group(function () {
 
-        Route::get('/list-kolam', [KolamController::class, 'adminIndex'])->name('admin.kolam.index');
+        Route::get('/list-kolam', [KolamController::class, 'adminIndex'])
+            ->name('admin.kolam.index');
 
-        Route::delete('/list-kolam/{id}', [KolamController::class, 'destroy'])->name('admin.kolam.destroy');
+        Route::delete('/list-kolam/{id}', [KolamController::class, 'destroy'])
+            ->name('admin.kolam.destroy');
     });
 });
