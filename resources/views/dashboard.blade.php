@@ -18,19 +18,19 @@
     <div class="col-md-4">
       <div class="stat-box stat-blue">
         <p>Suhu Air Kolam</p>
-        <h2>6.20°C</h2>
+        <h2>{{ $suhu }} °C</h2>
       </div>
     </div>
     <div class="col-md-4">
       <div class="stat-box stat-orange">
         <p>Ph Air Kolam</p>
-        <h2>6.20</h2>
+        <h2>{{ $ph }}</h2>
       </div>
     </div>
     <div class="col-md-4">
       <div class="stat-box stat-red">
         <p>Kadar Oksigen Air</p>
-        <h2>12</h2>
+        <h2>{{ $oksigen }}</h2>
       </div>
     </div>
   </div>

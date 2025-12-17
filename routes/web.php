@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\KolamController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
 
-    Route::get('/dashboard', fn () => view('dashboard'))
-        ->name('dashboard');
+    //Route::get('/dashboard', fn () => view('dashboard'))
+    //    ->name('dashboard');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
 
     /*
     |--------------------------------------------------------------------------
