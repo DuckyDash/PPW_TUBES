@@ -129,9 +129,9 @@
 /* Profile Header */
 .profile-header {
     display: flex;
-    align-items: center;
+    align-items: center;  
     gap: 1.5rem;
-    background-color: #7366ff;
+    background-color: #1e5799;
     padding: 1.5rem;
     border-radius: 1rem;
     color: white;
@@ -163,7 +163,7 @@
     align-items: center;
     justify-content: space-between;
     height: 100px;
-    background-color: #7366ff; /* satu warna default */
+    background-color: #7366ff; 
 }
 
 .stat-card .icon-circle {
