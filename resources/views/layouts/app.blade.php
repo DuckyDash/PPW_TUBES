@@ -83,7 +83,7 @@
           </div>
 
           {{-- Menampilkan Nama User yang Login --}}
-          <div class="me-2 text-end d-none d-md-block">
+          <div class="me-3 text-end d-none d-md-block ">
               <small class="fw-bold d-block">{{ auth()->user()->name ?? 'Guest' }}</small>
               <small class="text-muted" style="font-size: 0.75rem;">{{ ucfirst(auth()->user()->role ?? '') }}</small>
           </div>
