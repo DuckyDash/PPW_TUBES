@@ -24,6 +24,7 @@ function openModalEdit(element) {
     
     document.getElementById('nama_kolam').value = data.nama_kolam;
     document.getElementById('jenis_ikan').value = data.jenis_ikan;
+    document.getElementById('berat_bibit').value = data.berat_bibit;
     document.getElementById('suhu_air').value = data.suhu_air;
     document.getElementById('ph_air').value = data.ph_air;
     document.getElementById('status_pakan').value = data.status_pakan;

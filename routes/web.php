@@ -7,12 +7,14 @@ use App\Http\Controllers\KolamController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PanenController;
 
 /*
 |--------------------------------------------------------------------------
 | AUTH (GUEST)
 |--------------------------------------------------------------------------
 */
+
 Route::middleware('guest')->group(function () {
     Route::get('/', [AuthController::class, 'showLoginForm'])
         ->name('login');
@@ -41,7 +43,7 @@ Route::middleware('auth')->group(function () {
     //    ->name('dashboard');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard');
+        ->name('dashboard');
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/keuangan/{id}', [KeuanganController::class, 'show'])
         ->name('keuangan.detail');
 
-    Route::get('/keuangan/list', fn () => view('keuangan.list'))
+    Route::get('/keuangan/list', fn() => view('keuangan.list'))
         ->name('keuangan.list');
 
     /*
@@ -85,12 +87,23 @@ Route::middleware('auth')->group(function () {
         ->name('inventaris.update');
 
 
+    Route::post('/panen', [PanenController::class, 'store'])->name('panen.store');
+    Route::get('/riwayat-panen', [PanenController::class, 'userIndex'])->name('panen.user');
+
+    // Admin Routes (Masukkan dalam group admin prefix)
+    Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+        Route::get('/panen', [PanenController::class, 'adminIndex'])->name('panen.admin');
+        Route::put('/panen/{id}/verify', [PanenController::class, 'verify'])->name('panen.verify');
+        Route::put('/panen/{id}/sold', [PanenController::class, 'markAsSold'])->name('panen.sold');
+    });
+
+
     /*
     |--------------------------------------------------------------------------
     | PROFILE
     |--------------------------------------------------------------------------
     */
-    Route::get('/profile', fn () => view('profile'))
+    Route::get('/profile', fn() => view('profile'))
         ->name('profile');
 
     /*

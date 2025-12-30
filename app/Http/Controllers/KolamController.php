@@ -29,6 +29,7 @@ class KolamController extends Controller
             'jenis_ikan' => 'required',
             'suhu_air'   => 'required|numeric',
             'ph_air'     => 'required|numeric',
+            'berat_bibit' => 'required|numeric',
         ]);
 
         $data = $request->all();
@@ -45,7 +46,7 @@ class KolamController extends Controller
         
         $data = $request->except(['pemilik']);
         
-        $kolam->update($data);
+        $kolam->update($request->except(['pemilik']));
 
         return redirect()->back()->with('success', 'Data kolam berhasil diperbarui!');
     }

@@ -7,15 +7,17 @@
   .kolam-card {
     border: none;
     border-radius: 1rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     transition: all 0.2s ease-in-out;
     background-color: #fff;
-    height: 230px; 
+    height: 230px;
   }
+
   .kolam-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
   }
+
   .status-indikator {
     width: 12px;
     height: 12px;
@@ -23,13 +25,36 @@
     display: inline-block;
     margin-right: 6px;
   }
-  .status-aktif { background-color: #28a745; }      
-  .status-perawatan { background-color: #ffc107; }   
-  .status-nonaktif { background-color: #dc3545; }    
-  .card-body { padding: 1rem 1.25rem; }
-  .btn-menu { border: none; background: transparent; color: #6c757d; }
-  .btn-menu:hover { color: #0d6efd; }
-  .kolam-info small { color: #6c757d; }
+
+  .status-aktif {
+    background-color: #28a745;
+  }
+
+  .status-perawatan {
+    background-color: #ffc107;
+  }
+
+  .status-nonaktif {
+    background-color: #dc3545;
+  }
+
+  .card-body {
+    padding: 1rem 1.25rem;
+  }
+
+  .btn-menu {
+    border: none;
+    background: transparent;
+    color: #6c757d;
+  }
+
+  .btn-menu:hover {
+    color: #0d6efd;
+  }
+
+  .kolam-info small {
+    color: #6c757d;
+  }
 </style>
 @endpush
 
@@ -57,11 +82,11 @@
 
 <div class="row g-4" id="kolamContainer">
   @forelse($kolams as $kolam)
-    @php
-        $statusClass = 'status-nonaktif';
-        if($kolam->status == 'Aktif') $statusClass = 'status-aktif';
-        if($kolam->status == 'Dalam Perawatan') $statusClass = 'status-perawatan';
-    @endphp
+  @php
+  $statusClass = 'status-nonaktif';
+  if($kolam->status == 'Aktif') $statusClass = 'status-aktif';
+  if($kolam->status == 'Dalam Perawatan') $statusClass = 'status-perawatan';
+  @endphp
 
   <div class="col-md-4">
     <div class="card kolam-card">
@@ -79,30 +104,37 @@
               <i class="bi bi-three-dots-vertical"></i>
             </button>
             <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded-3">
-              
+
               {{-- TOMBOL DETAIL --}}
               <li>
-                <button class="dropdown-item" 
-                        data-json="{{ json_encode($kolam) }}" 
-                        onclick="showDetail(this)">
-                    Lihat Detail
+                <button class="dropdown-item text-success fw-bold"
+                  data-json="{{ json_encode($kolam) }}"
+                  onclick="openModalPanen(this)">
+                  <i class="bi bi-basket me-2"></i> Panen
                 </button>
               </li>
-              
+              <li>
+                <button class="dropdown-item"
+                  data-json="{{ json_encode($kolam) }}"
+                  onclick="showDetail(this)">
+                  Lihat Detail
+                </button>
+              </li>
+
               {{-- TOMBOL EDIT --}}
               <li>
-                <button class="dropdown-item text-warning" 
-                        data-json="{{ json_encode($kolam) }}" 
-                        onclick="openModalEdit(this)">
-                    Edit
+                <button class="dropdown-item text-warning"
+                  data-json="{{ json_encode($kolam) }}"
+                  onclick="openModalEdit(this)">
+                  Edit
                 </button>
               </li>
 
               {{-- TOMBOL HAPUS --}}
               <li>
                 <form action="{{ route('data_kolam.destroy', $kolam->id) }}" method="POST" onsubmit="return confirm('Hapus data kolam ini?')">
-                    @csrf @method('DELETE')
-                    <button type="submit" class="dropdown-item text-danger">Hapus</button>
+                  @csrf @method('DELETE')
+                  <button type="submit" class="dropdown-item text-danger">Hapus</button>
                 </form>
               </li>
             </ul>
@@ -119,8 +151,8 @@
   </div>
   @empty
   <div class="col-12 text-center py-5 text-muted">
-      <i class="bi bi-water fs-1 d-block mb-3"></i>
-      <p>Belum ada data kolam. Silakan tambah data baru.</p>
+    <i class="bi bi-water fs-1 d-block mb-3"></i>
+    <p>Belum ada data kolam. Silakan tambah data baru.</p>
   </div>
   @endforelse
 </div>
@@ -134,7 +166,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body px-4 pb-4">
-        
+
         <form id="formKolam" method="POST" action="">
           @csrf
           {{-- Container untuk method PUT --}}
@@ -149,6 +181,10 @@
               <div class="mb-3">
                 <label class="form-label">Jenis Ikan</label>
                 <input type="text" class="form-control rounded-3 shadow-sm" name="jenis_ikan" id="jenis_ikan" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Berat Bibit Awal (Kg)</label>
+                <input type="number" step="0.01" class="form-control rounded-3 shadow-sm" name="berat_bibit" id="berat_bibit" required>
               </div>
               <div class="mb-3">
                 <label class="form-label">Suhu Air (°C)</label>
@@ -168,11 +204,11 @@
                   <option value="Belum Diberikan">Belum Diberikan</option>
                 </select>
               </div>
-              
+
               <div class="mb-3">
                 <label class="form-label">Pemilik</label>
                 <div class="form-control bg-light text-muted">
-                    {{ Auth::user()->name }} (Otomatis)
+                  {{ Auth::user()->name }} (Otomatis)
                 </div>
               </div>
 
@@ -197,9 +233,53 @@
     </div>
   </div>
 </div>
+
+
+{{-- Modal Panen --}}
+<div class="modal fade" id="modalPanen" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Form Panen Ikan</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('panen.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="kolam_id" id="panen_kolam_id">
+                    
+                    {{-- Data Readonly (Otomatis Terisi) --}}
+                    <div class="mb-3">
+                        <label class="small text-muted">Pemilik</label>
+                        <input type="text" class="form-control bg-light" id="panen_pemilik" readonly>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label class="small text-muted">Jenis Ikan</label>
+                            <input type="text" class="form-control bg-light" id="panen_jenis" readonly>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label class="small text-muted">Berat Bibit (Kg)</label>
+                            <input type="text" class="form-control bg-light" id="panen_bibit" readonly>
+                        </div>
+                    </div>
+
+                    {{-- Input User --}}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-success">Berat Hasil Panen (Kg)</label>
+                        <input type="number" step="0.01" name="berat_panen" class="form-control form-control-lg border-success" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Ajukan Panen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  
 @endsection
 
 @push('scripts')
 {{-- Panggil File JS Eksternal --}}
 <script src="{{ asset('js/script_kolam.js') }}"></script>
+<script src="{{ asset('js/panen_kolam.js') }}"></script>
 @endpush
