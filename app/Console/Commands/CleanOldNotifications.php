@@ -13,7 +13,7 @@ class CleanOldNotifications extends Command
 
     public function handle()
     {
-        $days = 7; 
+        $days = 7;
 
         $deleted = Notification::where('created_at', '<', Carbon::now()->subDays($days))
             ->delete();
