@@ -43,6 +43,24 @@ class PanenController extends Controller
             'status' => 'Tidak Aktif'
         ]);
 
+        // Notifikasi ke USER
+        sendNotification(
+            Auth::id(),
+            'Panen Diajukan',
+            'Pengajuan panen berhasil dikirim dan menunggu verifikasi admin.'
+        );
+
+        // Notifikasi ke ADMIN
+        $admins = \App\Models\User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            sendNotification(
+                $admin->id,
+                'Panen Baru',
+                'Ada pengajuan panen baru dari ' . Auth::user()->name
+            );
+        }
+
+
         return redirect()->back()->with('success', 'Pengajuan panen berhasil dikirim!');
     }
 
@@ -69,6 +87,14 @@ class PanenController extends Controller
             'total_harga' => $total,
             'status' => 'Disetujui'
         ]);
+
+        sendNotification(
+            $panen->user_id,
+            'Panen Diverifikasi',
+            'Panen Anda telah diverifikasi dengan harga Rp ' .
+            number_format($panen->harga_per_kilo, 0, ',', '.') . ' /kg.'
+        );
+
 
         return redirect()->back()->with('success', 'Panen disetujui, harga ditetapkan.');
     }

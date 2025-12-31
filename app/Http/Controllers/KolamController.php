@@ -44,6 +44,13 @@ class KolamController extends Controller
 
         Kolam::create($data);
 
+        sendNotification(
+            Auth::id(),
+            'Kolam Ditambahkan',
+            'Kolam "' . $request->nama_kolam . '" berhasil ditambahkan.'
+        );
+
+
         return redirect()->back()->with('success', 'Kolam berhasil ditambahkan!');
     }
 

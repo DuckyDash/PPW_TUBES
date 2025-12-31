@@ -1,3 +1,14 @@
+@php
+use App\Models\Notification;
+
+$notifications = auth()->check()
+    ? Notification::where('user_id', auth()->id())
+        ->latest()
+        ->take(5)
+        ->get()
+    : collect();
+@endphp
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -80,18 +91,29 @@
         <div class="d-flex align-items-center position-relative">
           <i id="notificationBell" class="bi bi-bell fs-5 me-3" style="cursor: pointer;"></i>
 
-          <div id="notificationToastContainer" class="position-absolute top-100 end-0 mt-2" style="z-index: 1050; display: none;">
-            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-              <div class="toast-header">
-                <strong class="me-auto">Notifikasi</strong>
-                <small>Baru</small>
-                <button type="button" class="btn-close" onclick="this.closest('.toast').style.display='none';" aria-label="Close"></button>
-              </div>
-              <div class="toast-body">
-                Anda memiliki 3 notifikasi baru.
-              </div>
+          <div id="notificationToastContainer"
+            class="position-absolute top-100 end-0 mt-2"
+            style="z-index: 1050; display: none; width: 320px;">
+            
+          <div class="card shadow-sm">
+            <div class="card-header fw-bold">Notifikasi</div>
+
+            <div class="list-group list-group-flush">
+              @forelse($notifications as $notif)
+                <div class="list-group-item small {{ $notif->is_read ? '' : 'fw-bold' }}">
+                  <div>{{ $notif->title }}</div>
+                  <div class="text-muted">{{ $notif->message }}</div>
+                  <small class="text-muted">{{ $notif->created_at->diffForHumans() }}</small>
+                </div>
+              @empty
+                <div class="list-group-item text-muted text-center">
+                  Tidak ada notifikasi
+                </div>
+              @endforelse
             </div>
           </div>
+        </div>
+
 
           {{-- Menampilkan Nama User yang Login --}}
           <div class="me-2 text-end d-none d-md-block">
