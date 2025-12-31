@@ -8,6 +8,7 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PanenController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +106,10 @@ Route::middleware('auth')->group(function () {
     */
     Route::get('/profile', fn() => view('profile'))
         ->name('profile');
+
+    Route::put('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+
 
     /*
     |--------------------------------------------------------------------------

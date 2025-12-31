@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Admin - Data Panen')
+
+@section('header')
+<strong>Verifikasi Panen Tambak Ikan Mina Jaya</strong>
+@endsection
+
 @section('content')
 <div class="card border-0 shadow-sm">
     <div class="card-body">
@@ -31,8 +36,12 @@
                         </td>
                         <td>
                             @if($p->harga_per_kilo)
-                                <small>@currency($p->harga_per_kilo) /kg</small><br>
-                                <strong>Total: @currency($p->total_harga)</strong>
+                            <strong>
+                                Rp {{ number_format($p->total_harga, 0, ',', '.') }}
+                            </strong>
+                            <small class="text-muted d-block">
+                                (Rp {{ number_format($p->harga_per_kilo, 0, ',', '.') }} /kg)
+                            </small>
                             @else
                                 -
                             @endif
@@ -84,3 +93,4 @@
     </div>
 </div>
 @endsection
+ 

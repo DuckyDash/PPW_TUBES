@@ -43,11 +43,15 @@
         <h5 class="fw-bold text-primary mb-3">Jenis Ikan</h5>
         <div class="chart-section d-flex justify-content-between align-items-center flex-wrap">
           <ul class="list-unstyled fish-list mb-0">
-            <li><span class="dot dot-blue"></span> Ikan Mujair - 40%</li>
-            <li><span class="dot dot-green"></span> Ikan Lele - 25%</li>
-            <li><span class="dot dot-teal"></span> Ikan Nila - 20%</li>
-            <li><span class="dot dot-purple"></span> Ikan Patin - 15%</li>
-          </ul>
+          @forelse($fishLabels as $index => $ikan)
+            <li>
+              <span class="dot dot-blue"></span>
+              {{ $ikan }} - {{ $fishData[$index] }} kolam
+            </li>
+          @empty
+            <li class="text-muted fst-italic">Belum ada kolam aktif</li>
+          @endforelse
+        </ul>
           <div class="chart-container">
             <canvas id="fishChart"></canvas>
           </div>
@@ -78,23 +82,37 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+  const fishLabels = @json($fishLabels);
+  const fishData = @json($fishData);
+
   const ctx = document.getElementById('fishChart').getContext('2d');
+
   new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: ['Ikan Mujair', 'Ikan Lele', 'Ikan Nila', 'Ikan Patin'],
+      labels: fishLabels,
       datasets: [{
-        data: [40, 25, 20, 15],
-        backgroundColor: ['#7366ff', '#54c78c', '#00bcd4', '#7b61ff'],
+        data: fishData,
+        backgroundColor: [
+          '#7366ff',
+          '#54c78c',
+          '#00bcd4',
+          '#7b61ff',
+          '#ff9800',
+          '#e91e63'
+        ],
         borderWidth: 1
       }]
     },
     options: {
       cutout: '65%',
-      plugins: { legend: { display: false } },
+      plugins: {
+        legend: { display: false }
+      },
       responsive: true,
       maintainAspectRatio: false
     }
   });
 </script>
+
 @endpush

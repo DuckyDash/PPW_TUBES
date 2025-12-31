@@ -6,6 +6,7 @@ use App\Models\Kolam;
 use App\Models\Keuangan; // Asumsi ada model Keuangan
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PanenController extends Controller
 {
@@ -38,6 +39,10 @@ class PanenController extends Controller
             'status' => 'Menunggu Verifikasi'
         ]);
 
+        $kolam->update([
+            'status' => 'Tidak Aktif'
+        ]);
+
         return redirect()->back()->with('success', 'Pengajuan panen berhasil dikirim!');
     }
 
@@ -68,24 +73,31 @@ class PanenController extends Controller
         return redirect()->back()->with('success', 'Panen disetujui, harga ditetapkan.');
     }
 
-    // Proses Tandai Terjual (Masuk ke Keuangan)
     public function markAsSold($id)
     {
         $panen = Panen::findOrFail($id);
-        
-        // 1. Update Status Panen
-        $panen->update(['status' => 'Terjual']);
 
-        // 2. Masukkan ke Keuangan (Sesuaikan dengan nama kolom tabel keuangan kamu)
-        // Asumsi model Keuangan ada
-        /* Keuangan::create([
-            'jenis' => 'Pemasukan',
-            'keterangan' => 'Penjualan Panen ' . $panen->jenis_ikan . ' (' . $panen->pemilik . ')',
-            'nominal' => $panen->total_harga,
-            'tanggal' => now()
+        if ($panen->status === 'Terjual') {
+            return redirect()->back()->with('info', 'Panen sudah ditandai terjual.');
+        }
+
+        $panen->update([
+            'status' => 'Terjual'
         ]);
-        */
 
-        return redirect()->back()->with('success', 'Panen terjual! Data masuk ke Keuangan.');
+        Keuangan::create([
+            'nomor_transaksi' => 'TRX-' . date('Ymd') . '-' . strtoupper(Str::random(6)),
+            'nama_transaksi' => 'Penjualan Panen',
+            'tanggal' => now()->toDateString(),
+            'tipe' => 'Pemasukan',
+            'nominal' => (int) $panen->total_harga,
+            'status' => 'Selesai',
+            'keterangan' => 
+                'Penjualan panen ' . $panen->jenis_ikan .
+                ' milik ' . $panen->pemilik .
+                ' (' . $panen->berat_panen . ' Kg)'
+        ]);
+
+        return redirect()->back()->with('success', 'Panen berhasil ditandai terjual dan masuk ke keuangan.');
     }
 }

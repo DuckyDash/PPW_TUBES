@@ -10,6 +10,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+
   {{-- CSS global --}}
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 

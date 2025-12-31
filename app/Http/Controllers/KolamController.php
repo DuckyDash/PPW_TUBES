@@ -10,10 +10,17 @@ class KolamController extends Controller
 {
     public function index()
     {
-        $kolams = Kolam::orderBy('created_at', 'desc')->get();
-        
+        if (Auth::user()->role === 'admin') {
+            $kolams = Kolam::orderBy('created_at', 'desc')->get();
+        } else {
+            $kolams = Kolam::where('pemilik', Auth::user()->name)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        }
+
         return view('data_kolam', compact('kolams'));
     }
+
 
     public function adminIndex()
     {

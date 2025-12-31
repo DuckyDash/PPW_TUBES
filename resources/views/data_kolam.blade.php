@@ -110,7 +110,7 @@
                 <button class="dropdown-item text-success fw-bold"
                   data-json="{{ json_encode($kolam) }}"
                   onclick="openModalPanen(this)">
-                  <i class="bi bi-basket me-2"></i> Panen
+                  <i></i> Panen
                 </button>
               </li>
               <li>
