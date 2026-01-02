@@ -3,12 +3,12 @@
 use App\Models\Notification;
 
 if (!function_exists('sendNotification')) {
-    function sendNotification($userId, $title, $message)
-    {
+    function sendNotification($userId, $title, $message) {
         Notification::create([
             'user_id' => $userId,
             'title' => $title,
-            'message' => $message
+            'message' => $message,
+            'is_read' => false,
         ]);
     }
 }
