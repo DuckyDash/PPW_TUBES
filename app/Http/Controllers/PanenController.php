@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Panen;
 use App\Models\Kolam;
-use App\Models\Keuangan; // Asumsi ada model Keuangan
+use App\Models\Keuangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;

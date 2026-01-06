@@ -10,16 +10,24 @@ use Illuminate\Support\Facades\Validator;
 class KolamController extends Controller
 {
     // 1. GET: Ambil Semua Data Kolam
-    public function index()
+    public function index(Request $request)
     {
-        $kolams = Kolam::latest()->get();
+        $user = $request->user();
+
+        if ($user->role === 'admin') {
+            $kolams = Kolam::latest()->get();
+        } else {
+            $kolams = Kolam::where('pemilik', $user->name)
+                        ->latest()
+                        ->get();
+        }
 
         return response()->json([
             'success' => true,
-            'message' => 'List Data Kolam',
-            'data'    => $kolams
-        ], 200);
+            'data' => $kolams
+        ]);
     }
+
 
     // 2. POST: Tambah Data Kolam Baru
     public function store(Request $request)

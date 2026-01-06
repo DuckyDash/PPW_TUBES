@@ -56,7 +56,10 @@ class KolamController extends Controller
 
     public function update(Request $request, $id)
     {
-        $kolam = Kolam::findOrFail($id);
+        $kolam = Kolam::where('id', $id)
+            ->where('pemilik', Auth::user()->name)
+            ->firstOrFail();
+
         
         $data = $request->except(['pemilik']);
         
@@ -67,7 +70,12 @@ class KolamController extends Controller
 
     public function destroy($id)
     {
-        Kolam::findOrFail($id)->delete();
+        $kolam = Kolam::where('id', $id)
+            ->where('pemilik', Auth::user()->name)
+            ->firstOrFail();
+
+        $kolam->delete();
+
         return redirect()->back()->with('success', 'Kolam berhasil dihapus!');
     }
 }
