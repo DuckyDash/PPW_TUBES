@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\KolamController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\AdminUserController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Kolam (user lihat milik sendiri, admin lihat semua)
     Route::get('/kolam', [KolamController::class, 'index']);
+    
+
+    // Notifications (tambahan 7 januari 2025)
+    Route::get('/notifications', [NotificationController::class, 'index']);
 
     /*
     |--------------------------------------------------------------------------
